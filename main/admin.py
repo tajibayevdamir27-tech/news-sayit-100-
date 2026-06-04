@@ -17,8 +17,8 @@ class ArticleAdmin(admin.ModelAdmin):
     
 
     fieldsets = (
-        ('Maqola ma\'lumoti / Article Info', {
-            'fields': ('title', 'content', 'image')
+        ('Maqala ma\'glumat / Article Info', {
+            'fields': ('title','slug', 'content', 'image')
         }),
         ('Kategoriya / Category', {
             'fields': ('category',)

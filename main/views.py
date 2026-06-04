@@ -8,6 +8,18 @@ from django.core.paginator import Paginator
 from .models import Article
 from .forms import ArticleForm
 
+def article_detail_slug(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    article.views += 1
+    article.save()
+    user_liked = request.user.is_authenticated and article.likes.filter(pk=request.user.pk).exists()
+    related = Article.objects.filter(category=article.category).exclude(slug=slug)[:3]
+    return render(request, 'main/article_detail.html', {
+        'article': article,
+        'user_liked': user_liked,
+        'related': related,
+    })
+
 
 def is_admin(user):
     return user.is_authenticated and user.is_staff

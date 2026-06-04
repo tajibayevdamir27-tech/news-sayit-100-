@@ -8,6 +8,7 @@ urlpatterns = [
     path('django-admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('article/<int:pk>/', views.article_detail, name='article_detail'),
+    path('article/<slug:slug>/', views.article_detail_slug, name='article_detail_slug'),
     path('article/<int:pk>/like/', views.toggle_like, name='toggle_like'),
     path('register/', views.register_view, name='register'),
     path('login/', views.login_view, name='login'),
